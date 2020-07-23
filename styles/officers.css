@@ -1,0 +1,15 @@
+.officerContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:space-evenly;
+}
+
+.officerCard {
+    display: block;
+    justify-self: space-around;
+    align-items: left;
+    margin: 2px;
+    border: 2px dotted;
+    width: 30%;
+    height: auto;
+}
