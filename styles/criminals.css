@@ -1,0 +1,19 @@
+.officerHeading{
+    text-align: center;
+}
+
+.criminalsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:space-evenly;
+}
+
+.criminalCard {
+    display: block;
+    justify-self: space-around;
+    align-items: left;
+    margin: 5px;
+    border: 2px dotted;
+    width: 30%;
+    height: auto;
+}

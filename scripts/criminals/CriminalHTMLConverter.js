@@ -1,7 +1,6 @@
 export const CriminalHTMLConverter = (criminalObj) => {
     return `
-        <section>
-        <fieldset>
+        <div class="criminalCard"> 
             Name: ${criminalObj.name}
             <br>
             Age: ${criminalObj.age}
@@ -21,7 +20,6 @@ export const CriminalHTMLConverter = (criminalObj) => {
             Incarceration Start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}
             <br>
             Incarceration End: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}
-            </fieldset>
-        </section>
-    `
+    </div>
+        `
 }

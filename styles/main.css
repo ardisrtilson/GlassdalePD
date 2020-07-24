@@ -1,3 +1,6 @@
+@import "./criminals.css";
+@import "./officers.css";
+
 .caps {
     text-transform: capitalize;
 }
