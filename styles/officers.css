@@ -1,3 +1,7 @@
+.officerHeading{
+    text-align: center;
+}
+
 .officerContainer {
     display: flex;
     flex-flow: row wrap;
@@ -8,7 +12,8 @@
     display: block;
     justify-self: space-around;
     align-items: left;
-    margin: 2px;
+    margin: 10px;
+    padding: 5px;
     border: 2px dotted;
     width: 30%;
     height: auto;

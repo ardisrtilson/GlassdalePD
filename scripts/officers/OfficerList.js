@@ -16,8 +16,8 @@ export const OfficerList = () => {
             })
 
             contentTarget.innerHTML = `
-                <h2>Glassdale PD Officers</h2>
-                <div class=officersContainer>
+                <h2 class="officerHeading">Glassdale PD Officers</h2>
+                <div class="officerContainer">
                     ${ officerHTMLRepresentations }
                     </div>
             `
