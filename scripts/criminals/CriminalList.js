@@ -14,7 +14,7 @@ eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
             return parseInt(crimeThatWasSelected) === crime.id
         }
     )
-
+    console.log(foundCrimeObject)
     const allCriminals = useCriminals()
 
     const filteredCriminals = allCriminals.filter(
@@ -35,7 +35,10 @@ const render = (arrayOfCriminals) => {
     })
 
     contentTarget.innerHTML = `
+    <h2 class="criminalHeading">Convicted Criminals</h2>
+    <div class="criminalsContainer">
             ${ criminalHTML }
+            </div>
     `
 }
 
