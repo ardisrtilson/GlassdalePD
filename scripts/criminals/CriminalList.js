@@ -35,7 +35,6 @@ const render = (arrayOfCriminals) => {
     })
 
     contentTarget.innerHTML = `
-    <h2>Glassdale Convicted Criminals</h2>
             ${ criminalHTML }
     `
 }
