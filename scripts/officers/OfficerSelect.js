@@ -1,22 +1,22 @@
-import { useOfficers, getOfficers } from "./OfficerProvider.js"
+import { getOfficers, useOfficers} from "./OfficerProvider.js"
 
 const contentTarget = document.querySelector(".filters__officers")
 const eventHub = document.querySelector(".container")
 
 contentTarget.addEventListener("change", (changeEvent) => {
 
-    const customEvent = new CustomEvent("officerSelected", {
+    const officerSelected = new CustomEvent("officerSelected", {
         detail: { 
-            officerID: changeEvent.target.value
+            officerID: changeEvent.target.name
         }
     })
 
-    eventHub.dispatchEvent(customEvent)
+    eventHub.dispatchEvent(officerSelected)
 })
 
 const render = officerCollection => {
     
-    contentTarget.innerHTML = `
+    contentTarget.innerHTML = `                
         <select class="dropdown" id="officerSelect">
             <option value="0">Please select an officer...</option>
             ${
