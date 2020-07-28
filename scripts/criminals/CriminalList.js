@@ -1,4 +1,5 @@
 import { useCriminals, getCriminals } from "./CriminalProvider.js";
+import { useOfficers} from "../officers/OfficerProvider.js";
 import { CriminalHTMLConverter } from "./CriminalHTMLConverter.js";
 import { useConvictions } from "../convictions/ConvictionProvider.js";
 
@@ -14,16 +15,28 @@ eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
             return parseInt(crimeThatWasSelected) === crime.id
         }
     )
-
+    console.log(foundCrimeObject)
     const allCriminals = useCriminals()
 
-    const filteredCriminals = allCriminals.filter(
+    const filteredByCrime = allCriminals.filter(
         (currentCriminalObject) => {
             return foundCrimeObject.name === currentCriminalObject.conviction
         }
     )
+    render(filteredByCrime)
+    })
 
-    render(filteredCriminals)
+eventHub.addEventListener("officerSelected", (officerSelectedEvent) => {
+    const selectedOfficer = officerSelectedEvent.detail.officerID
+    console.log(selectedOfficer)
+    const allCriminals = useCriminals()
+    const filteredByOfficers = allCriminals.filter(
+        (currentCriminalObject) => {
+            return selectedOfficer === currentCriminalObject.arrestingOfficer
+        }
+    )
+
+    render(filteredByOfficers)
 
     })
 
@@ -35,8 +48,10 @@ const render = (arrayOfCriminals) => {
     })
 
     contentTarget.innerHTML = `
-    <h2>Glassdale Convicted Criminals</h2>
+    <div>
+    <div class="criminalsContainer">
             ${ criminalHTML }
+            </div>
     `
 }
 
