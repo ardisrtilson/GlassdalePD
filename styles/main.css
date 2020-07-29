@@ -1,6 +1,13 @@
 @import "./criminals.css";
 @import "./officers.css";
+@import "./notes.css";
 
 .caps {
     text-transform: capitalize;
+}
+
+.filters{
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
 }

@@ -1,0 +1,21 @@
+#note--title{
+    display: flex;
+    flex-direction: column;
+}
+
+#note--author{
+    display: flex;
+    flex-direction: column;
+}
+
+#note--content{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonSpace{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
