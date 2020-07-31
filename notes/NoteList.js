@@ -22,6 +22,5 @@ export const NoteList = () => {
                 return NoteHTMLConverter(currentNote)
             }
         ).join("")
-
         contentTarget.innerHTML = allNotesConvertedToStrings
     }
