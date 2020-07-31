@@ -1,5 +1,4 @@
 import { useCriminals, getCriminals } from "./CriminalProvider.js";
-import { useOfficers} from "../officers/OfficerProvider.js";
 import { CriminalHTMLConverter } from "./CriminalHTMLConverter.js";
 import { useConvictions } from "../convictions/ConvictionProvider.js";
 
