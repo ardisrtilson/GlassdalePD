@@ -1,3 +1,60 @@
 {
-    "notes": []
+  "notes": [
+    {
+      "title": "Who the hell knows??",
+      "author": "Red",
+      "content": "This is a big mystery.",
+      "timestamp": 1596049358032,
+      "id": 1
+    },
+    {
+      "title": "a",
+      "author": "a",
+      "content": "a",
+      "timestamp": 1596212544271,
+      "id": 2
+    },
+    {
+      "title": "Huh",
+      "author": "Red",
+      "content": "Nah",
+      "timestamp": 1596218842581,
+      "id": 3
+    },
+    {
+      "title": "",
+      "author": "",
+      "content": "",
+      "timestamp": 1596383732757,
+      "id": 4
+    },
+    {
+      "title": "",
+      "author": "",
+      "content": "",
+      "timestamp": 1596383968064,
+      "id": 5
+    },
+    {
+      "title": "",
+      "author": "",
+      "content": "",
+      "timestamp": 1596384334703,
+      "id": 6
+    },
+    {
+      "title": "",
+      "author": "",
+      "content": "",
+      "timestamp": 1596384441679,
+      "id": 7
+    },
+    {
+      "title": "",
+      "author": "",
+      "content": "",
+      "timestamp": 1596399992888,
+      "id": 8
+    }
+  ]
 }

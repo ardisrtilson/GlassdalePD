@@ -20,6 +20,9 @@ export const CriminalHTMLConverter = (criminalObj) => {
             Incarceration Start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}
             <br>
             Incarceration End: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}
+            <br>
+            <button id="associates--${criminalObj.id}">Associate Alibis</button>
+            <br>
     </div>
         `
 }

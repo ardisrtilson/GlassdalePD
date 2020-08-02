@@ -1,9 +1,10 @@
 import { useCriminals, getCriminals } from "./CriminalProvider.js";
-import { useOfficers} from "../officers/OfficerProvider.js";
 import { CriminalHTMLConverter } from "./CriminalHTMLConverter.js";
 import { useConvictions } from "../convictions/ConvictionProvider.js";
 
+
 const contentTarget = document.querySelector(".criminalsContainer")
+const alibiTarget = document.querySelector(".alibiList")
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
@@ -28,7 +29,6 @@ eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
 
 eventHub.addEventListener("officerSelected", (officerSelectedEvent) => {
     const selectedOfficer = officerSelectedEvent.detail.officerID
-    console.log(selectedOfficer)
     const allCriminals = useCriminals()
     const filteredByOfficers = allCriminals.filter(
         (currentCriminalObject) => {
@@ -63,3 +63,21 @@ export const CriminalList = () => {
           render(criminals)
         })
 }
+
+eventHub.addEventListener("showAlibi", (showAlibiEvent) => {
+    const allCriminals = useCriminals()
+    const criminalAddress = showAlibiEvent.detail
+    const foundCriminal = allCriminals.find(
+        (alibi) => {
+            return parseInt(criminalAddress) === alibi.id
+        }
+    )
+    const criminalAlibi = foundCriminal.known_associates
+    let nameArray = []
+    let alibiArray = []
+    for(const associates of criminalAlibi){
+        nameArray.push(associates.name)
+        alibiArray.push(associates.alibi)
+    }
+    alibiTarget.innerHTML = `<fieldset>Name: ${nameArray.join(" ")}<br>Alibi: ${alibiArray.join(" ")}</fieldset>`
+    })
