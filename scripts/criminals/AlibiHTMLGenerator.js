@@ -1,9 +1,9 @@
-export const CriminalHTMLConverter = (alibiObj) => {
+export const AlibiHTMLConverter = (alibiObj) => {
     return `
-        <div class="criminalCard"> 
-            Name: ${alibilObj.name}
+        <div class="alibis"> 
+            Name: ${alibiObj.name}
             <br>
-            Age: ${alibiObj.age}
+            Alibi: ${alibiObj.alibi}
             <br>
     </div>
         `

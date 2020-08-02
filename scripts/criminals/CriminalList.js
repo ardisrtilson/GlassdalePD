@@ -1,5 +1,6 @@
 import { useCriminals, getCriminals } from "./CriminalProvider.js";
 import { CriminalHTMLConverter } from "./CriminalHTMLConverter.js";
+import { AlibiHTMLConverter } from "./AlibiHTMLGenerator.js";
 import { useConvictions } from "../convictions/ConvictionProvider.js";
 
 
@@ -48,10 +49,7 @@ const render = (arrayOfCriminals) => {
     })
 
     contentTarget.innerHTML = `
-    <div>
-    <div class="criminalsContainer">
             ${ criminalHTML }
-            </div>
     `
 }
 
@@ -64,20 +62,27 @@ export const CriminalList = () => {
         })
 }
 
-eventHub.addEventListener("showAlibi", (showAlibiEvent) => {
+eventHub.addEventListener("showAlibi", (showAlibiEvent) => { 
+    const selectedAlibi = showAlibiEvent.detail
     const allCriminals = useCriminals()
-    const criminalAddress = showAlibiEvent.detail
-    const foundCriminal = allCriminals.find(
-        (alibi) => {
-            return parseInt(criminalAddress) === alibi.id
-        }
-    )
-    const criminalAlibi = foundCriminal.known_associates
-    let nameArray = []
-    let alibiArray = []
-    for(const associates of criminalAlibi){
-        nameArray.push(associates.name)
-        alibiArray.push(associates.alibi)
-    }
-    alibiTarget.innerHTML = `<fieldset>Name: ${nameArray.join(" ")}<br>Alibi: ${alibiArray.join(" ")}</fieldset>`
-    })
+    const filteredByAlibi = allCriminals.filter(
+        (currentAlibiObject) => {
+            return selectedAlibi === currentAlibiObject.id
+})
+const associatesAlibi=filteredByAlibi[0].known_associates
+alibiRender(associatesAlibi)
+}
+)
+
+const alibiRender = (arrayOfAlibis) => {
+    let alibiHTML = ""
+
+arrayOfAlibis.forEach(alibi => {
+    console.log(alibi)
+    alibiHTML += AlibiHTMLConverter(alibi)
+})
+
+alibiTarget.innerHTML = `
+        ${alibiHTML}
+`
+}
