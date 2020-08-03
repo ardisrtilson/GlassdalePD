@@ -67,6 +67,7 @@ export const CriminalList = () => {
 
 eventHub.addEventListener("showAlibi", (showAlibiEvent) => { 
     const selectedAlibi = showAlibiEvent.detail
+    console.log(selectedAlibi)
     const allCriminals = useCriminals()
     const filteredByAlibi = allCriminals.find(
         (currentAlibiObject) => {
@@ -80,8 +81,7 @@ const alibiRender = (arrayOfAlibis) => {
 const associatesAlibi=arrayOfAlibis.known_associates
     let alibiHTML = ""
 
-    associatesAlibi.forEach(alibi => {
-    console.log(alibi)
+    associatesAlibi.forEach(alibi => {    
     alibiHTML += AlibiHTMLConverter(alibi)
 })
 
@@ -98,12 +98,11 @@ eventHub.addEventListener("showWitness", (witnessSelectedEvent) => {
 })
 
 const renderWitness = (witnessArray) => {
-    console.log(witnessArray)
-    let witnesslHTML = ""
+    let witnessHTML = ""
     witnessArray.forEach(witness => {
-        witnesslHTML += WitnessHTMLConverter(witness)
+        witnessHTML += WitnessHTMLConverter(witness)
     })
     witnessTarget.innerHTML = `
-    ${ witnesslHTML }
+    ${ witnessHTML }
 `
 }
