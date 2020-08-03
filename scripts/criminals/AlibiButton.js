@@ -12,6 +12,7 @@ eventHub.addEventListener("click", clickEvent => {
     let buttonID = i
         const customEvent = new CustomEvent("showAlibi", {detail: buttonID})
         eventHub.dispatchEvent(customEvent)
+        console.log(buttonID)
     }
 }
 })

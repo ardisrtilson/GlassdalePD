@@ -4,7 +4,6 @@ export const AlibiHTMLConverter = (alibiObj) => {
             Associate Name: ${alibiObj.name}
             <br>
             Alibi: ${alibiObj.alibi}
-            <br>
     </div>
         `
 }
