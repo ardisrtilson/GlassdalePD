@@ -12,7 +12,7 @@
 .criminalCard {
     display: block;
     justify-self: space-around;
-    align-items: left;
+    align-items: center;
     margin: 5px;
     border: 2px dotted;
     width: 30%;

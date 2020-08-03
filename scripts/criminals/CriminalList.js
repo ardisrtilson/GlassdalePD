@@ -82,7 +82,7 @@ const associatesAlibi=arrayOfAlibis[0].known_associates
     alibiHTML += AlibiHTMLConverter(alibi)
 })
 
-alibiTarget.innerHTML = `
+alibiTarget.innerHTML = `<div class="criminalCard">Criminal Name: ${arrayOfAlibis[0].name}
         ${alibiHTML}
-`
+</div>`
 }
