@@ -4,7 +4,7 @@ import { OfficerSelect } from "./officers/OfficerSelect.js";
 import { NoteForm } from "../notes/Noteform.js";
 import { ShowNoteButton } from "../notes/ShowNoteButton.js";
 import { ShowWitnessButton } from "./witnesses/WitnessButton.js";
-import "./criminals/AlibiButton.js";
+import "./alibi/AlibiButton.js";
 import "../notes/NoteList.js"
 
 

@@ -1,6 +1,6 @@
 import { useCriminals, getCriminals } from "./CriminalProvider.js";
 import { CriminalHTMLConverter } from "./CriminalHTMLConverter.js";
-import { AlibiHTMLConverter } from "./AlibiHTMLGenerator.js";
+import { AlibiHTMLConverter } from "../alibi/AlibiHTMLGenerator.js";
 import { useConvictions } from "../convictions/ConvictionProvider.js";
 import { useWitness, getWitness } from "../witnesses/WitnessProvider.js";
 import { WitnessHTMLConverter } from "../witnesses/WitnessHTMLGenerator.js";

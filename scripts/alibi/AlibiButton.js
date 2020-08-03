@@ -1,4 +1,4 @@
-import { useCriminals, getCriminals } from "./CriminalProvider.js";
+import { useCriminals, getCriminals } from "../criminals/CriminalProvider.js";
 
 const eventHub = document.querySelector(".container")
 
