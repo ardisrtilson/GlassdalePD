@@ -69,15 +69,15 @@ eventHub.addEventListener("showAlibi", (showAlibiEvent) => {
         (currentAlibiObject) => {
             return selectedAlibi === currentAlibiObject.id
 })
-const associatesAlibi=filteredByAlibi[0].known_associates
-alibiRender(associatesAlibi)
+alibiRender(filteredByAlibi)
 }
 )
 
 const alibiRender = (arrayOfAlibis) => {
+const associatesAlibi=arrayOfAlibis[0].known_associates
     let alibiHTML = ""
 
-arrayOfAlibis.forEach(alibi => {
+    associatesAlibi.forEach(alibi => {
     console.log(alibi)
     alibiHTML += AlibiHTMLConverter(alibi)
 })
