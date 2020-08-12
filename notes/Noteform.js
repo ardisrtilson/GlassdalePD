@@ -13,7 +13,8 @@ eventHub.addEventListener("click", clickEvent => {
             title: noteTitle.value,
             author: noteAuthor.value,
             content: noteContent.value,
-            timestamp: Date.now()
+            timestamp: Date.now(),
+            criminalId: 4
         }
         saveNote(newNote)
         render()

@@ -1,4 +1,5 @@
-export const NoteHTMLConverter = (noteObject) => {
+export const NoteHTMLConverter = (noteObject, criminalObject) => {
+    console.log(criminalObject)
     return `
     <section class="note">
     <fieldset>
@@ -7,6 +8,7 @@ export const NoteHTMLConverter = (noteObject) => {
     <div class="note--timestamp">Timestamp: ${ new Date(noteObject.timestamp).toLocaleDateString('en-US')  }</div>
     <br>
     <div class="note--content">${ noteObject.content }</div>
+    <div class="note--related__criminal">Related Criminal: ${ criminalObject.name}</div>
     </fieldset>
 </section>   
     `
