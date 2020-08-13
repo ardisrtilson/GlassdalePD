@@ -17,10 +17,10 @@ export const NoteList = () => {
             const allCriminals = useCriminals()
             render(allNotes, allCriminals)
         })
-    }
+    }     
 
     const render = (noteArray, criminalArray) => {
-        contentTarget.innerHTML = noteArray.map(currentNote => {
+        contentTarget.innerHTML = noteArray.reverse().map(currentNote => {
             const relatedCriminal = criminalArray.find(criminal => criminal.id === currentNote.criminalId)
             console.log(relatedCriminal)
                 return NoteHTMLConverter(currentNote, relatedCriminal)
