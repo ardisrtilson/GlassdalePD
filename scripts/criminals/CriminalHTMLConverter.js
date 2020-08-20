@@ -1,27 +1,22 @@
-export const CriminalHTMLConverter = (criminalObj) => {
+export const CriminalHTMLConverter = (criminalObject, facilities) => {
     return `
         <div class="criminalCard"> 
-            Name: ${criminalObj.name}
-            <br>
-            Age: ${criminalObj.age}
-            <br>
-            <span class="caps">
-            Eye Color: ${criminalObj.eyeColor}
-            </span>
-            <br>
-            Work History: ${criminalObj.workHistory.join(", ")}
-            <br>
-            <span class="caps">
-            Conviction: ${criminalObj.conviction}
-            </span>
-            <br>
-            Arresting Officer: ${criminalObj.arrestingOfficer}
-            <br>
-            Incarceration Start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}
-            <br>
-            Incarceration End: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}
-            <br>
-            <button id="associates--${criminalObj.id}">Associate Alibis</button>
+        <h4>${criminalObject.name}</h4>
+            <p>Convicted for ${criminalObject.conviction}</p>
+            <p>Arrested by ${criminalObject.arrestingOfficer}</p>
+            <p>Incarcerated between:
+                ${new Date(criminalObject.incarceration.start).toLocaleDateString()} and
+                ${new Date(criminalObject.incarceration.end).toLocaleDateString()}
+            </p>
+            <p>Age: ${criminalObject.age}</p>
+            Facilities:<br>
+                <ul>
+
+                    ${facilities.map(f => `<li>${f.facilityName}</li>`).join("")}
+                </ul>
+            </div>
+            <button id="associates--${criminalObject.id}">Show Associates</button>
+        </div>
     </div>
         `
 }

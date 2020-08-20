@@ -4,7 +4,7 @@
 }
 
 .criminalsContainer {
-    display: flex;
+    display: block;
     flex-flow: row wrap;
     justify-content:space-evenly;
 }
@@ -15,6 +15,6 @@
     align-items: center;
     margin: 5px;
     border: 2px dotted;
-    width: 30%;
+    width: auto;
     height: auto;
 }

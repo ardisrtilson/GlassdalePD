@@ -29,7 +29,6 @@ eventHub.addEventListener("click", clickEvent => {
 })
 
 const render = (criminals) => {
-    console.log(criminals.id)
     contentTarget.innerHTML = `
         <input type="text" id="note--title" placeholder ="Enter note title" />
         <input type="text" id="note--author" placeholder="Your name here" />

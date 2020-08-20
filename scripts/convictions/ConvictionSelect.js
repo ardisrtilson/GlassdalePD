@@ -7,7 +7,7 @@ contentTarget.addEventListener("change", (changeEvent) => {
 
     const customEvent = new CustomEvent("crimeSelected", {
         detail: { 
-            crimeID: changeEvent.target.value
+            crimeId: changeEvent.target.value
         }
     })
 
