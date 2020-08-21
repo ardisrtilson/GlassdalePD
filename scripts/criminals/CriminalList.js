@@ -27,10 +27,11 @@ export const CriminalList = () => {
     .then(getFacilities)
     .then(getCriminalFacilities)
     .then(() => {
+
         criminals = useCriminals()
         criminalFacilities = useCriminalFacilities()
         facilities = useFacilities()
-
+        
         render()
     })
 }
@@ -68,55 +69,16 @@ const filterCriminals = () => {
 }
 
 eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
-
     chosenFilters.crime = crimeSelectedEvent.detail.crimeId
-
     filterCriminals()
     render()
 })
 
 eventHub.addEventListener("officerSelected", (officerSelectedEvent) => {
-
-        chosenFilters.officer = officerSelectedEvent.detail.officerId
-        filterCriminals()
-        render()
-    })
-
-    const render = () => {
-        let criminalHTML = ""
-    
-        const arrayOfCriminalHTMLRepresentations = criminals.map(
-            (criminal) => {
-                // Get all of the criminal/facility relationships for this criminal
-                const criminalFacilityRelationships = criminalFacilities.filter(
-                    (cf) => {
-                        return criminal.id === cf.criminalId
-                    }
-                )
-    
-                // Convert the relationship objects to facility objects
-                const matchingFacilities = criminalFacilityRelationships.map(
-                    (currentRelationship) => {
-                        return facilities.find(
-                            (facility) => {
-                                return currentRelationship.facilityId === facility.id
-                            }
-                        )
-                    }
-                )
-    
-                return CriminalHTMLConverter(criminal, matchingFacilities)
-            }
-        )
-    
-        contentTarget.innerHTML = `
-            <h2>Glassdale Convicted Criminals</h2>
-            <article class="criminalList">
-                ${arrayOfCriminalHTMLRepresentations.join("")}
-            </article>
-        `
-    }
-
+    chosenFilters.officer = officerSelectedEvent.detail.officerId
+    filterCriminals()
+    render()
+})
 
 eventHub.addEventListener("showAlibi", (showAlibiEvent) => { 
     const selectedAlibi = showAlibiEvent.detail
@@ -124,37 +86,68 @@ eventHub.addEventListener("showAlibi", (showAlibiEvent) => {
     const filteredByAlibi = allCriminals.find(
         (currentAlibiObject) => {
             return selectedAlibi === currentAlibiObject.id
+        }
+    )
+    alibiRender(filteredByAlibi)
 })
-alibiRender(filteredByAlibi)
-}
-)
-
-const alibiRender = (arrayOfAlibis) => {
-const associatesAlibi=arrayOfAlibis.known_associates
-    let alibiHTML = ""
-
-    associatesAlibi.forEach(alibi => {    
-    alibiHTML += AlibiHTMLConverter(alibi)
-})
-
-alibiTarget.innerHTML = `<div class="criminalCard">Criminal Name: ${arrayOfAlibis.name}
-        ${alibiHTML}
-</div>`
-}
-
+    
 eventHub.addEventListener("showWitness", (witnessSelectedEvent) => {
     getWitness().then(() => {
-        const witnesses = useWitness()
-        renderWitness(witnesses)
+    const witnesses = useWitness()
+    renderWitness(witnesses)
     })
 })
 
-const renderWitness = (witnessArray) => {
-    let witnessHTML = ""
-    witnessArray.forEach(witness => {
-        witnessHTML += WitnessHTMLConverter(witness)
-    })
-    witnessTarget.innerHTML = `
-    ${ witnessHTML }
-`
+const render = () => {
+    
+    const arrayOfCriminalHTMLRepresentations = criminals.map(
+        (criminal) => {
+                
+            const criminalFacilityRelationships = criminalFacilities.filter(
+                (cf) => {
+                    return criminal.id === cf.criminalId
+                }
+            )
+    
+            const matchingFacilities = criminalFacilityRelationships.map(
+                (currentRelationship) => {
+                    return facilities.find(
+                        (facility) => {
+                            return currentRelationship.facilityId === facility.id
+                        }
+                    )
+                }
+            )
+
+            return CriminalHTMLConverter(criminal, matchingFacilities)
+            
+        }
+    )
+    
+    contentTarget.innerHTML = `
+        <h2>Glassdale Convicted Criminals</h2>
+        <article class="criminalList">
+            ${arrayOfCriminalHTMLRepresentations.join("")}
+        </article>
+        `
 }
+
+const renderWitness = (witnessArray) => {
+    const arrayOfWitnesses = witnessArray.map(
+        (witness) => {
+            return WitnessHTMLConverter(witness)
+        })
+    witnessTarget.innerHTML = `
+            ${ arrayOfWitnesses.join("<br>") }
+        `
+        }
+
+const alibiRender = (arrayOfAlibis) => {
+    const associatesAlibi=arrayOfAlibis.known_associates.map(
+        (names) => {
+            return AlibiHTMLConverter(names)
+        })
+    alibiTarget.innerHTML = `<div class="criminalCard">Criminal Name: ${arrayOfAlibis.name}
+            ${associatesAlibi}</div>
+        `
+        }
