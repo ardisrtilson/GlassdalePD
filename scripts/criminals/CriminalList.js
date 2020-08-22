@@ -1,25 +1,32 @@
 import { useCriminals, getCriminals } from "./CriminalProvider.js";
 import { CriminalHTMLConverter } from "./CriminalHTMLConverter.js";
-import { AlibiHTMLConverter } from "../alibi/AlibiHTMLGenerator.js";
-import {getFacilities, useFacilities} from "../facilities/FacilityProvider.js";
-import {getCriminalFacilities, useCriminalFacilities} from "../facilities/CriminalFacilityProvider.js";
+import { getFacilities, useFacilities } from "../facilities/FacilityProvider.js";
+import { getCriminalFacilities, useCriminalFacilities } from "../facilities/CriminalFacilityProvider.js";
 import { useConvictions } from "../convictions/ConvictionProvider.js";
-import { useWitness, getWitness } from "../witnesses/WitnessProvider.js";
-import { WitnessHTMLConverter } from "../witnesses/WitnessHTMLGenerator.js";
-
-
-const contentTarget = document.querySelector(".criminalsContainer")
-const witnessTarget = document.querySelector(".witnesses")
-const alibiTarget = document.querySelector(".alibiList")
-const eventHub = document.querySelector(".container")
 
 let criminals = []
 let criminalFacilities = []
 let facilities = []
+
 const chosenFilters = {
     crime: "0",
     officer: "0"
 }
+
+const eventHub = document.querySelector(".container")
+const contentTarget = document.querySelector(".criminalsContainer")
+
+eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
+    chosenFilters.crime = crimeSelectedEvent.detail.crimeId
+    filterCriminals()
+    render()
+})
+
+eventHub.addEventListener("officerSelected", (officerSelectedEvent) => {
+    chosenFilters.officer = officerSelectedEvent.detail.officerId
+    filterCriminals()
+    render()
+})
 
 export const CriminalList = () => {
 
@@ -31,7 +38,7 @@ export const CriminalList = () => {
         criminals = useCriminals()
         criminalFacilities = useCriminalFacilities()
         facilities = useFacilities()
-        
+
         render()
     })
 }
@@ -68,36 +75,6 @@ const filterCriminals = () => {
     }
 }
 
-eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
-    chosenFilters.crime = crimeSelectedEvent.detail.crimeId
-    filterCriminals()
-    render()
-})
-
-eventHub.addEventListener("officerSelected", (officerSelectedEvent) => {
-    chosenFilters.officer = officerSelectedEvent.detail.officerId
-    filterCriminals()
-    render()
-})
-
-eventHub.addEventListener("showAlibi", (showAlibiEvent) => { 
-    const selectedAlibi = showAlibiEvent.detail
-    const allCriminals = useCriminals()
-    const filteredByAlibi = allCriminals.find(
-        (currentAlibiObject) => {
-            return selectedAlibi === currentAlibiObject.id
-        }
-    )
-    alibiRender(filteredByAlibi)
-})
-    
-eventHub.addEventListener("showWitness", (witnessSelectedEvent) => {
-    getWitness().then(() => {
-    const witnesses = useWitness()
-    renderWitness(witnesses)
-    })
-})
-
 const render = () => {
     
     const arrayOfCriminalHTMLRepresentations = criminals.map(
@@ -111,14 +88,13 @@ const render = () => {
     
             const matchingFacilities = criminalFacilityRelationships.map(
                 (currentRelationship) => {
-                    return facilities.find(
+                    return facilities.filter(
                         (facility) => {
                             return currentRelationship.facilityId === facility.id
                         }
                     )
                 }
             )
-
             return CriminalHTMLConverter(criminal, matchingFacilities)
             
         }
@@ -131,23 +107,3 @@ const render = () => {
         </article>
         `
 }
-
-const renderWitness = (witnessArray) => {
-    const arrayOfWitnesses = witnessArray.map(
-        (witness) => {
-            return WitnessHTMLConverter(witness)
-        })
-    witnessTarget.innerHTML = `
-            ${ arrayOfWitnesses.join("<br>") }
-        `
-        }
-
-const alibiRender = (arrayOfAlibis) => {
-    const associatesAlibi=arrayOfAlibis.known_associates.map(
-        (names) => {
-            return AlibiHTMLConverter(names)
-        })
-    alibiTarget.innerHTML = `<div class="criminalCard">Criminal Name: ${arrayOfAlibis.name}
-            ${associatesAlibi}</div>
-        `
-        }
