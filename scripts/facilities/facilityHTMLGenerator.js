@@ -1,4 +1,5 @@
-export const facilityHTMLConverter = (facilityObj, facilities) => {
+export const facilityHTMLConverter = (facilityObj, criminals) => {
+    console.log(criminals)
     return `
         <div> 
             Facility: ${facilityObj.facilityName}
@@ -6,6 +7,11 @@ export const facilityHTMLConverter = (facilityObj, facilities) => {
             Capacity: ${facilityObj.capacity}
             <br>
             Security: ${facilityObj.securityLevel}
+            <br>
+            Criminals:      
+            <ul>
+            ${criminals.map(c => `<li>${c.name}</li>`).join("")}
+        </ul>
     </div>
         `
 }
