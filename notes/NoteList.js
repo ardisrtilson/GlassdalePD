@@ -1,4 +1,4 @@
-import { getNotes, useNotes, deleteNote} from "./NoteProvider.js"
+import { getNotes, useNotes, deleteNote, editNote} from "./NoteProvider.js"
 import { getCriminals, useCriminals } from '../scripts/criminals/CriminalProvider.js'
 import { NoteHTMLConverter } from "./NoteHTMLConverter.js"
 
@@ -12,7 +12,6 @@ eventHub.addEventListener("showNotesClicked", customEvent => {
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id.startsWith("deleteNote--")) {
         const [prefix, id] = clickEvent.target.id.split("--")
-        console.log(prefix, id)
        deleteNote(id).then(
            () => {
                const updatedNotes = useNotes()
@@ -22,6 +21,18 @@ eventHub.addEventListener("click", clickEvent => {
        )
     }
 })
+
+eventHub.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id.startsWith("editNote--")) {
+        getNotes()
+        .then(() => {
+        const allNotes = useNotes()
+        const [prefix, id] = clickEvent.target.id.split("--")
+        const foundNote = allNotes.find(findNote => findNote.id === parseInt(id))
+        console.log(id)
+        editNote(foundNote)
+        })
+}})
 
 export const NoteList = () => {
     getNotes()

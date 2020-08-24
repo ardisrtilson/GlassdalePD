@@ -10,7 +10,7 @@ import "./alibi/AlibiList.js";
 import "../notes/NoteList.js";
 import "./witnesses/WitnessList.js";
 import "./facilities/FacilityList.js";
-
+import "../notes/JournalForm.js";
 
 CriminalList()
 ConvictionSelect()

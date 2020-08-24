@@ -1,4 +1,5 @@
 export const CriminalHTMLConverter = (criminalObject, facilities) => {
+    
     return `
         <div class="criminalCard"> 
         <h4>${criminalObject.name}</h4>
@@ -11,8 +12,7 @@ export const CriminalHTMLConverter = (criminalObject, facilities) => {
             <p>Age: ${criminalObject.age}</p>
             Facilities:<br>
                 <ul>
-
-                    ${facilities.map(f => `<li>${f.facilityName}</li>`).join("")}
+                    ${facilities.map(facility => `<li>${facility.facilityName}</li>`).join("")}
                 </ul>
             </div>
             <button id="associates--${criminalObject.id}">Show Associates</button>
