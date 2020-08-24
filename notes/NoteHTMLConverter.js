@@ -1,5 +1,4 @@
 export const NoteHTMLConverter = (noteObject, criminalObject) => {
-    console.log(criminalObject)
     return `
     <section class="note">
     <fieldset>
@@ -10,6 +9,7 @@ export const NoteHTMLConverter = (noteObject, criminalObject) => {
     <div class="note--content">${ noteObject.content }</div>
     <div class="note--related__criminal">Related Criminal: ${ criminalObject.name}</div>
     <button id="deleteNote--${noteObject.id}">Delete Note</button>
-</section>   
+    <button id="editNote--${noteObject.id}">Edit Note</button>
+</section>
     `
 }

@@ -1,5 +1,4 @@
 export const facilityHTMLConverter = (facilityObj, criminals) => {
-    console.log(criminals)
     return `
         <div> 
             Facility: ${facilityObj.facilityName}

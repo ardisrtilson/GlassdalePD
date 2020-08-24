@@ -79,7 +79,7 @@ const render = () => {
     
     const arrayOfCriminalHTMLRepresentations = criminals.map(
         (criminal) => {
-                
+              
             const criminalFacilityRelationships = criminalFacilities.filter(
                 (cf) => {
                     return criminal.id === cf.criminalId
@@ -88,18 +88,18 @@ const render = () => {
     
             const matchingFacilities = criminalFacilityRelationships.map(
                 (currentRelationship) => {
-                    return facilities.filter(
+                    return facilities.find(
                         (facility) => {
                             return currentRelationship.facilityId === facility.id
                         }
                     )
                 }
             )
+
             return CriminalHTMLConverter(criminal, matchingFacilities)
             
         }
     )
-    
     contentTarget.innerHTML = `
         <h2>Glassdale Convicted Criminals</h2>
         <article class="criminalList">
